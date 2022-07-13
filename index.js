@@ -13,3 +13,4 @@ app.listen(process.env.PORT,() => {
 })
 
 app.use("/product", require("./routers/productRouter"))
+app.use("/user", require("./routers/userRouter"))
