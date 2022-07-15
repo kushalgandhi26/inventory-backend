@@ -1,17 +1,9 @@
-const parse = require('pg-connection-string').parse;
-const config = parse(process.env.DATABASE_URL);
 const Sequelize = require('sequelize');
 
-const database = new Sequelize(config.database, config.user, config.password, {
-    host: config.host,
-    port: config.port,
-    dialect: 'postgres',
-    dialectOptions: {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false
-        }
-    },
+const database = new Sequelize(process.env.DATABASE,process.env.USER,process.env.PASSWORD, {
+    host: process.env.HOST,
+    port: process.env.DPORT,
+    dialect: 'postgres'
 })
 
-module.exports = database
+module.exports = database;
