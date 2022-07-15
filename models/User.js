@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken")
 const User = database.define(
     "users",
     {
-        name: {
+        username: {
             type: Sequelize.TEXT
         },
         phonenumber: {
@@ -18,19 +18,25 @@ const User = database.define(
 
 User.loginUser = async (req, res) => {
     try {
-        const { name, phonenumber } = req.body
+        const { username, phonenumber } = req.body
         const user = await User.findOne({
             where: {
                 phonenumber: phonenumber
             }
         })
         if (user == null) {
-            const newUser = await User.create({ name, phonenumber })
+            const newUser = await User.create({ username, phonenumber })
             const token = jwt.sign(
                 { userId: phonenumber },
                 process.env.TOKEN_KEY
             );
-            return res.status(200).json({jwt:token,newUser})
+            return res.status(200).json({jwt:token,user:newUser.username})
+        }else{
+            const token = jwt.sign(
+                { userId: user.phonenumber },
+                process.env.TOKEN_KEY
+            );
+            return res.status(200).json({jwt:token,user:user.username})
         }
     } catch (error) {
         console.error(error)
