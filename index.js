@@ -14,7 +14,7 @@ const options = {
 		},
 		servers: [
 			{
-				url: process.env.BACKEND_URL,
+				url: "https://inventoryapp-backend.herokuapp.com",
 			},
 		],
 	},
