@@ -23,6 +23,14 @@ const Product = database.define(
     { timestamps: false }
 )
 
+const run = async() => {
+    await Product.sync()
+}
+
+(function(){
+    run()
+})();
+
 Product.getProduct = async (req, res) => {
     try {
         const product = await Product.findOne({

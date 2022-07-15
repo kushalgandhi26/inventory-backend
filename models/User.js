@@ -16,6 +16,14 @@ const User = database.define(
     { timestamps: false }
 )
 
+const run = async() => {
+    await User.sync()
+}
+
+(function(){
+    run()
+})();
+
 User.loginUser = async (req, res) => {
     try {
         const { username, phonenumber } = req.body
