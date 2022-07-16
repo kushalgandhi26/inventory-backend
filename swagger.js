@@ -5,7 +5,8 @@ const doc = {
         title: "Inventory-app API",
         description: "An Inventory management website which provides basic CRUD operations."
     },
-    host: 'https://inventoryapp-backend.herokuapp.com'
+    host: 'inventoryapp-backend.herokuapp.com',
+    scheme:['https']
 }
 
 const outputfile = 'swagger.json'
