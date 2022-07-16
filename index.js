@@ -11,6 +11,6 @@ app.listen(process.env.PORT,() => {
     console.log(`Server has started on ${process.env.PORT}`)
 })
 
-app.use(require("./routers/swagger"))
+app.use(require("./swaggerRoute/swagger"))
 app.use("/product", require("./routers/productRouter"))
 app.use("/user", require("./routers/userRouter"))

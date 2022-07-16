@@ -1,25 +1,29 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "MY API",
-    "description": "dfs",
+    "title": "Inventory-app API",
+    "description": "An Inventory management website which provides basic CRUD operations.",
     "version": "1.0.0"
   },
-  "host": "localhost:5000",
+  "host": "inventoryapp-backend.herokuapp.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
-    "/products/{id}": {
+    "/product/products/{id}": {
       "get": {
-        "description": "",
+        "summary": "Get the product by id",
+        "tags": [
+          "Product APIs"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "The product information by id"
           },
           {
             "name": "token",
@@ -33,24 +37,39 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/products": {
+    "/product/products": {
       "get": {
-        "description": "",
+        "summary": "Returns the list of all the products",
+        "tags": [
+          "Product APIs"
+        ],
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/addproduct": {
+    "/product/addproduct": {
       "post": {
-        "description": "",
+        "summary": "Create a new product",
+        "tags": [
+          "Product APIs"
+        ],
         "parameters": [
           {
             "name": "token",
@@ -64,13 +83,13 @@
               "type": "object",
               "properties": {
                 "title": {
-                  "example": "any"
+                  "example": "Product26"
                 },
                 "image": {
-                  "example": "any"
+                  "example": "https://thumbs.dreamstime.com/b/random-word-concept-cubes-171151178.jpg"
                 },
                 "createduser": {
-                  "example": "any"
+                  "example": "Kushal"
                 }
               }
             }
@@ -82,13 +101,19 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/updateproduct/{id}": {
+    "/product/updateproduct/{id}": {
       "put": {
-        "description": "",
+        "summary": "Update the product by the id",
+        "tags": [
+          "Product APIs"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -107,8 +132,11 @@
             "schema": {
               "type": "object",
               "properties": {
-                "where": {
-                  "example": "any"
+                "title": {
+                  "example": "Product26"
+                },
+                "image": {
+                  "example": "https://thumbs.dreamstime.com/b/random-word-concept-cubes-171151178.jpg"
                 }
               }
             }
@@ -116,17 +144,26 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Update Successfully"
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/deleteproduct/{id}": {
+    "/product/deleteproduct/{id}": {
       "delete": {
-        "description": "",
+        "summary": "Remove the product by id",
+        "tags": [
+          "Product APIs"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -142,24 +179,26 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Delete Successfully"
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/login": {
+    "/user/login": {
       "post": {
-        "description": "",
+        "summary": "Authenticate user",
+        "tags": [
+          "User APIs"
+        ],
         "parameters": [
           {
             "name": "body",
@@ -168,10 +207,10 @@
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "any"
+                  "example": "Kushal"
                 },
                 "phonenumber": {
-                  "example": "any"
+                  "example": "9999999999"
                 }
               }
             }
@@ -180,13 +219,19 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/getUsers": {
+    "/user/getUsers": {
       "get": {
         "description": "",
+        "tags": [
+          "User APIs"
+        ],
         "parameters": [],
         "responses": {
           "200": {
@@ -195,5 +240,8 @@
         }
       }
     }
-  }
+  },
+  "scheme": [
+    "https"
+  ]
 }

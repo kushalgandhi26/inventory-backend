@@ -32,9 +32,10 @@ Product.getProduct = async (req, res) => {
         })
         if(product)
             return res.status(200).json(product)
-        res.json({messege: "Invalid Request"})
+        res.status(404).json({messege: "Product not found"})
     } catch (error) {
         console.error(error)
+        res.status(500).json({messege: "Internal Server Error"})
     }
 }
 
@@ -44,6 +45,7 @@ Product.getProducts = async (req, res) => {
         res.status(200).json(products)
     } catch (error) {
         console.error(error)
+        res.status(500).json({messege: "Internal Server Error"})
     }
 }
 
@@ -54,6 +56,7 @@ Product.createProduct = async (req, res) => {
         res.status(200).json(product)
     } catch (error) {
         console.error(error)
+        res.status(500).json({messege: "Internal Server Error"})
     }
 }
 
@@ -77,23 +80,28 @@ Product.updateProduct = async (req, res) => {
                 })
             res.status(200).json({ messege: "Update Successfully" })
         }
-        return res.json({messege: "Invalid Request"})
+        return res.status(404).json({messege: "Product not found"})
     } catch (error) {
         console.error(error)
+        res.status(500).json({messege: "Internal Server Error"})
     }
 }
 
 Product.deleteProduct = async (req, res) => {
     try {
-        await Product.destroy({
+        const product = await Product.destroy({
             where: {
                 id: req.params.id
             }
         })
+        if(product == null)
+            return res.status(404).json({messege: "Product not found"})
         res.json({ messege: "Delete Successfully" })
     } catch (error) {
         console.error(error)
+        res.status(500).json({messege: "Internal Server Error"})
     }
 }
+
 
 module.exports = Product

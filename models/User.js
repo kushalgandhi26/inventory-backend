@@ -40,6 +40,7 @@ User.loginUser = async (req, res) => {
         }
     } catch (error) {
         console.error(error)
+        res.status(500).json({messege: "Internal Server Error"})
     }
 }
 
