@@ -6,7 +6,7 @@ const swaggerUI = require("swagger-ui-express");
 const swaggerdocument = require("../swagger.json")
 
 const app = express()
-app.use("/api-docs",swaggerUI.serve)
+router.use("/api-docs",swaggerUI.serve)
 router.get("/api-docs",swaggerUI.setup(swaggerdocument))
 
 dotenv.config();
