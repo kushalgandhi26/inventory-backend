@@ -11,6 +11,5 @@ app.listen(process.env.PORT || 8000)
 
 
 app.use(require("./swaggerRoute/swagger"))
-router.get("/api-docs",swaggerUI.setup(swaggerdocument))
 app.use("/product", require("./routers/productRouter"))
 app.use("/user", require("./routers/userRouter"))
