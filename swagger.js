@@ -2,8 +2,8 @@ const swagger_autogen = require("swagger-autogen")()
 
 const doc = {
     info:{
-        title: "MY API",
-        description: "dfs"
+        title: "Inventory-app API",
+        description: "An Inventory management website which provides basic CRUD operations."
     },
     host: 'https://inventoryapp-backend.herokuapp.com'
 }

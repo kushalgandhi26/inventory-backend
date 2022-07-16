@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "MY API",
-    "description": "dfs",
+    "title": "Inventory-app API",
+    "description": "An Inventory management website which provides basic CRUD operations.",
     "version": "1.0.0"
   },
   "host": "https://inventoryapp-backend.herokuapp.com",
@@ -11,7 +11,7 @@
     "http"
   ],
   "paths": {
-    "/products/{id}": {
+    "product/products/{id}": {
       "get": {
         "description": "",
         "parameters": [
@@ -37,7 +37,7 @@
         }
       }
     },
-    "/products": {
+    "product/products": {
       "get": {
         "description": "",
         "parameters": [],
@@ -48,7 +48,7 @@
         }
       }
     },
-    "/addproduct": {
+    "product/addproduct": {
       "post": {
         "description": "",
         "parameters": [
@@ -64,13 +64,13 @@
               "type": "object",
               "properties": {
                 "title": {
-                  "example": "any"
+                  "example": "Product20"
                 },
                 "image": {
-                  "example": "any"
+                  "example": "https://thumbs.dreamstime.com/b/random-word-concept-cubes-171151178.jpg"
                 },
                 "createduser": {
-                  "example": "any"
+                  "example": "Kushal"
                 }
               }
             }
@@ -86,7 +86,7 @@
         }
       }
     },
-    "/updateproduct/{id}": {
+    "product/updateproduct/{id}": {
       "put": {
         "description": "",
         "parameters": [
@@ -124,7 +124,7 @@
         }
       }
     },
-    "/deleteproduct/{id}": {
+    "product/deleteproduct/{id}": {
       "delete": {
         "description": "",
         "parameters": [
@@ -150,7 +150,7 @@
         }
       }
     },
-    "/login": {
+    "user/login": {
       "post": {
         "description": "",
         "parameters": [
@@ -161,26 +161,15 @@
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "any"
+                  "example": "Kushal"
                 },
                 "phonenumber": {
-                  "example": "any"
+                  "example": "9999999999"
                 }
               }
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/getUsers": {
-      "get": {
-        "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
