@@ -2,30 +2,11 @@ const express = require("express")
 const cors = require("cors")
 const dotenv = require("dotenv");
 const swaggerUI = require("swagger-ui-express");
-const swaggerJsDoc = require("swagger-jsdoc");
-
-const options = {
-	definition: {
-		openapi: "3.0.0",
-		info: {
-			title: "Inventory-app API",
-			version: "1.0.0",
-			description: "An Inventory management website which provides basic CRUD operations.",
-		},
-		servers: [
-			{
-				url: "https://inventoryapp-backend.herokuapp.com",
-			},
-		],
-	},
-	apis: ["./routers/*.js"],
-};
-
-const specs = swaggerJsDoc(options);
+const swaggerdocument = require("../swagger.json")
 
 const app = express()
-
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+app.use("/api-docs",swaggerUI.serve)
+app.get("/api-docs",swaggerUI.setup(swaggerdocument))
 
 dotenv.config();
 app.use(cors());
