@@ -11,6 +11,6 @@ var port = process.env.PORT || 8000
 app.listen(port)
 
 
-app.use("/api",require("./swaggerRoute/swagger"))
+// app.use("/api",require("./swaggerRoute/swagger"))
 app.use("/product", require("./routers/productRouter"))
 app.use("/user", require("./routers/userRouter"))
