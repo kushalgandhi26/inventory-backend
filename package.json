@@ -23,6 +23,10 @@
     "sequelize": "^6.21.3",
     "swagger-ui-express": "^4.5.0"
   },
+  "engines": {
+    "node": ">=12.x.x <=16.x.x",
+    "npm": ">=6.0.0"
+  },
   "devDependencies": {
     "swagger-autogen": "^2.21.5"
   }
