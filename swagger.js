@@ -5,7 +5,7 @@ const doc = {
         title: "Inventory-app API",
         description: "An Inventory management website which provides basic CRUD operations."
     },
-    host: 'inventoryapp-backend26.herokuapp.com',
+    host: 'inventory-backend26.herokuapp.com',
     scheme:['https']
 }
 
