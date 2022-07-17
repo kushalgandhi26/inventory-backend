@@ -7,7 +7,8 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 
-app.listen(process.env.PORT || 8000)
+var port = process.env.PORT || 8000
+app.listen(port)
 
 
 app.use(require("./swaggerRoute/swagger"))
