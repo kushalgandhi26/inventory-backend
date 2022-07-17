@@ -1,0 +1,248 @@
+# Inventoryapp-backend
+
+Here is the url for api doc
+https://inventory-backend26.herokuapp.com/api/docs/
+
+## Task not completed
+I have tried to find an api for sms sending or otp verification, but I couldn't able to find it.
+
+## Swagger documentaion
+```
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Inventory-app API",
+    "description": "An Inventory management website which provides basic CRUD operations.",
+    "version": "1.0.0"
+  },
+  "host": "inventory-backend26.herokuapp.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/product/products/{id}": {
+      "get": {
+        "summary": "Get the product by id",
+        "tags": [
+          "Product APIs"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The product information by id"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/product/products": {
+      "get": {
+        "summary": "Returns the list of all the products",
+        "tags": [
+          "Product APIs"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/product/addproduct": {
+      "post": {
+        "summary": "Create a new product",
+        "tags": [
+          "Product APIs"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "Product26"
+                },
+                "image": {
+                  "example": "https://thumbs.dreamstime.com/b/random-word-concept-cubes-171151178.jpg"
+                },
+                "createduser": {
+                  "example": "Kushal"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/product/updateproduct/{id}": {
+      "put": {
+        "summary": "Update the product by the id",
+        "tags": [
+          "Product APIs"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "Product26"
+                },
+                "image": {
+                  "example": "https://thumbs.dreamstime.com/b/random-word-concept-cubes-171151178.jpg"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/product/deleteproduct/{id}": {
+      "delete": {
+        "summary": "Remove the product by id",
+        "tags": [
+          "Product APIs"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "summary": "Authenticate user",
+        "tags": [
+          "User APIs"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "Kushal"
+                },
+                "phonenumber": {
+                  "type": "string",
+                  "example": "9999999999"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "scheme": [
+    "https"
+  ]
+}
+```
