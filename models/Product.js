@@ -40,7 +40,7 @@ Product.getProduct = async (req, res) => {
         })
         if(product)
             return res.status(200).json(product)
-        res.status(404).json({messege: "Product not found"})
+        return res.status(404).json({messege: "Product not found"})
     } catch (error) {
         console.error(error)
         res.status(500).json({messege: "Internal Server Error"})
@@ -50,7 +50,7 @@ Product.getProduct = async (req, res) => {
 Product.getProducts = async (req, res) => {
     try {
         const products = await Product.findAll()
-        res.status(200).json(products)
+        return res.status(200).json(products)
     } catch (error) {
         console.error(error)
         res.status(500).json({messege: "Internal Server Error"})
@@ -61,7 +61,7 @@ Product.createProduct = async (req, res) => {
     try {
         const { title, image, createduser } = req.body
         const product = await Product.create({ title, image, createduser })
-        res.status(200).json(product)
+        return res.status(200).json(product)
     } catch (error) {
         console.error(error)
         res.status(500).json({messege: "Internal Server Error"})
@@ -86,7 +86,7 @@ Product.updateProduct = async (req, res) => {
                         id: req.params.id
                     }
                 })
-            res.status(200).json({ messege: "Update Successfully" })
+            return res.status(200).json({ messege: "Update Successfully" })
         }
         return res.status(404).json({messege: "Product not found"})
     } catch (error) {
@@ -104,7 +104,7 @@ Product.deleteProduct = async (req, res) => {
         })
         if(product == null)
             return res.status(404).json({messege: "Product not found"})
-        res.json({ messege: "Delete Successfully" })
+        return res.json({ messege: "Delete Successfully" })
     } catch (error) {
         console.error(error)
         res.status(500).json({messege: "Internal Server Error"})
