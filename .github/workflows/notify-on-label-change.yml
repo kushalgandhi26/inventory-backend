@@ -24,7 +24,7 @@ jobs:
         id: check_label
         if: steps.check_target_branch.outputs.check_for_label == 'true'
         run: |
-          labels="${{ toJSON(github.event.pull_request.labels) }}"
+          labels=${{ toJSON(github.event.pull_request.labels) }}
           if echo "$labels" | grep -q '"name": "Ready for review"'; then
             echo "::set-output name=send_telegram::true"
           else
