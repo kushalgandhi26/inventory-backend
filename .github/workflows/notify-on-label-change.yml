@@ -2,7 +2,7 @@ name: notify-on-label-change
 
 on:
   pull_request:
-    types: [ labeled ]
+    types: [labeled]
 
 jobs:
   notify_telegram:
@@ -23,8 +23,7 @@ jobs:
         id: check_label
         if: steps.check_target_branch.outputs.check_for_label == 'true'
         run: |
-          if [ ${{ github.event.label.name == 'Ready for review' }} ]; then
-            echo ${{ github.event.label.name }}
+          if [[ "${{ github.event.label.name }}" == "Ready for review" ]]; then
             echo "::set-output name=send_telegram::true"
           else
             echo "::set-output name=send_telegram::false"
