@@ -1,0 +1,42 @@
+name: notify-on-label-change
+
+on:
+  pull_request_target:
+    types:
+      - labeled
+
+jobs:
+  notify_telegram:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check PR target branch
+        id: check_target_branch
+        run: |
+          base_branch="${{ github.event.pull_request.base.ref }}"
+          if [ "$base_branch" = "master" ]; then
+            echo "::set-output name=check_for_label::true"
+          else
+            echo "::set-output name=check_for_label::false"
+
+      - name: Check for 'Ready for review' label
+        id: check_label
+        if: steps.check_target_branch.outputs.check_for_label == 'true'
+        run: |
+          labels="${{ toJSON(github.event.pull_request.labels) }}"
+          if echo "$labels" | grep -q "\"name\": \"Ready for review\""; then
+            echo "::set-output name=send_telegram::true"
+          else
+            echo "::set-output name=send_telegram::false"
+
+      - name: Send Telegram notification
+        if: steps.check_label.outputs.send_telegram == 'true'
+        uses: appleboy/telegram-action@v1
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            The label 'Ready for review' has been added to a pull request.
+            - PR Title: ${{ github.event.pull_request.title }}
+            - PR Author: ${{ github.event.pull_request.user.login }}
+            - PR URL: ${{ github.event.pull_request.html_url }}
