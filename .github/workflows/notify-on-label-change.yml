@@ -31,9 +31,9 @@ jobs:
             echo "::set-output name=send_telegram::false"
           fi
 
-      - name: Send Telegram notification
+      - name: Telegram Message Notify
         if: steps.check_label.outputs.send_telegram == 'true'
-        uses: appleboy/telegram-action@v1
+        uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
