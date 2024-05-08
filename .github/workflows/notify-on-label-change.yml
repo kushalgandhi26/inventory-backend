@@ -24,6 +24,7 @@ jobs:
         if: steps.check_target_branch.outputs.check_for_label == 'true'
         run: |
           if [ ${{ github.event.label.name == 'Ready for review' }} ]; then
+            echo ${{ github.event.label.name }}
             echo "::set-output name=send_telegram::true"
           else
             echo "::set-output name=send_telegram::false"
