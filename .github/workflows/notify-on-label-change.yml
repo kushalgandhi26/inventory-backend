@@ -36,7 +36,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            The label 'Ready for review' has been added to a pull request.
-            - PR Title: ${{ github.event.pull_request.title }}
-            - PR Author: ${{ github.event.pull_request.user.login }}
-            - PR URL: ${{ github.event.pull_request.html_url }}
+            🚀 PR is ready for review 🚀
+            PR Title: ${{ github.event.pull_request.title }}
+            PR Author: ${{ github.event.pull_request.user.login }}
+            PR URL: ${{ github.event.pull_request.html_url }}
