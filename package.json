@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "swagger": "node swagger.js"
+    "swagger": "node swagger.js",
+    "changelog": "auto-changelog --template changelog-template.hbs -p -u --commit-limit false",
+    "changelog-debug": "auto-changelog --template changelog-template.hbs -p --template json --output changelog-data.json"
   },
   "author": "Kushal Gandhi",
   "license": "ISC",
@@ -28,6 +30,16 @@
     "npm": ">=6.0.0"
   },
   "devDependencies": {
+    "auto-changelog": "^2.4.0",
     "swagger-autogen": "^2.21.5"
+  },
+  "auto-changelog": {
+    "commitLimit": false,
+    "unreleased": true,
+    "issueUrl": "",
+    "replaceText": {},
+    "includeBranch": [
+      "master"
+    ]
   }
 }
