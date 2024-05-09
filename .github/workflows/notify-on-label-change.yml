@@ -10,27 +10,25 @@ jobs:
 
     steps:
       - name: Check PR target branch
-        id: check_target_branch
         run: |
           base_branch="${{ github.event.pull_request.base.ref }}"
           if [ "$base_branch" = "master" ]; then
-            echo "::set-output name=check_for_label::true"
+            echo "check_for_label=true" >> "$GITHUB_ENV"
           else
-            echo "::set-output name=check_for_label::false"
+            echo "check_for_label=false" >> "$GITHUB_ENV"
           fi
 
       - name: Check for 'Ready for review' label
-        id: check_label
-        if: steps.check_target_branch.outputs.check_for_label == 'true'
+        if: env.check_for_label == 'true'
         run: |
           if [[ "${{ github.event.label.name }}" == "Ready for review" ]]; then
-            echo "::set-output name=send_telegram::true"
+            echo "send_telegram=true" >> "$GITHUB_ENV"
           else
-            echo "::set-output name=send_telegram::false"
+            echo "send_telegram=false" >> "$GITHUB_ENV"
           fi
 
       - name: Telegram Message Notify
-        if: steps.check_label.outputs.send_telegram == 'true'
+        if: env.send_telegram == 'true'
         run: |
           echo "Sending Telegram message..."
           echo "@kushal2601" > message.txt
